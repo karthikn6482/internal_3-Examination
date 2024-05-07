@@ -1,14 +1,18 @@
-<plugin>
-    <groupId>com.github.stma</groupId>
-    <artifactId>yamllint-maven-plugin</artifactId>
-    <version>@version.you.pleased@</version>
-    <executions>
-      <execution>
-        <id>yamllint</id>
-        <phase>validate</phase>
-        <goals>
-          <goal>yamllint</goal>
-        </goals>
-      </execution>
-    </executions>
-</plugin>
+Updated Azure DevOps YAML configuration for Maven Build Pipeline with
+Regression Tests
+trigger:
+- master
+pool:
+vmImage: 'ubuntu-latest'
+steps:
+- task:
+MavenAuthenticate@0
+inputs:
+mavenServiceConnection: 'YourMavenServiceConnection'
+mavenPomFile: 'path/to/your/pom.xml'
+options: '-Xmx3072m'
+- task: Maven@3
+inputs:
+mavenPomFile: 'path/to/your/pom.xml'
+goals: 'clean package test'
+options: '-Xmx3072m
